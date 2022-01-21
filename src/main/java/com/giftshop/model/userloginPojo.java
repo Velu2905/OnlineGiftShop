@@ -1,6 +1,6 @@
 package com.giftshop.model;
 
-public class userlogin {
+public class userloginPojo {
 	private String username;
 	private String password;
 	public String getUsername() {
@@ -15,7 +15,7 @@ public class userlogin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public userlogin(String username, String password) {
+	public userloginPojo(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;

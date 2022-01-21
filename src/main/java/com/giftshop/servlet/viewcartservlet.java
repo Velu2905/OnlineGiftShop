@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.giftshop.impl.viewCartImpl;
-import com.giftshop.model.viewcart;
+import com.giftshop.model.viewcartPojo;
 @WebServlet("/addcart")
 public class viewcartservlet extends HttpServlet {
 	@Override
@@ -19,12 +19,9 @@ public class viewcartservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		 String size=req.getParameter("sss");
-		 System.out.println(size);
 		 int qty=Integer.parseInt(req.getParameter("qqq"));
-		 System.out.println(qty);
 		 HttpSession session=req.getSession();
-	      viewcart vcar=(viewcart)session.getAttribute("cart");
-	      
+	      viewcartPojo vcar=(viewcartPojo)session.getAttribute("cart");
 	      vcar.setSize(size);
 	      vcar.setQuantity(qty);
 	      viewCartImpl dao=new viewCartImpl();

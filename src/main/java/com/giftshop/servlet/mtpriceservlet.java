@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.giftshop.impl.viewCartImpl;
-import com.giftshop.model.viewcart;
+import com.giftshop.model.viewcartPojo;
 
 public class mtpriceservlet extends HttpServlet {
 @Override
@@ -32,7 +32,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	 int qty=Integer.parseInt(req.getParameter("quantity"));
 	 System.out.println(qty);
 	 
-      viewcart vcar=new viewcart(image, pname, type, price, size, qty,0);
+      viewcartPojo vcar=new viewcartPojo(image, pname, type, price, size, qty,0);
       viewCartImpl dao=new viewCartImpl();
       try {
 	dao.insertview(vcar);

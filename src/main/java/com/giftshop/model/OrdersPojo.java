@@ -2,8 +2,8 @@ package com.giftshop.model;
 
 import java.util.Date;
 
-public class Orders {
-	public Orders() {
+public class OrdersPojo {
+	public OrdersPojo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -20,8 +20,21 @@ public class Orders {
 	private double totalprice;
 	private int quantiy;
 	private String status;
+	private String image;
 
 	
+
+	public String getImage() {
+		return image;
+	}
+
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
 
 	public int getProductid() {
 		return productid;
@@ -143,7 +156,7 @@ public class Orders {
 
 
 
-	public Orders(int productid, int orderid, int userid, Date orderdate, String status) {
+	public OrdersPojo(int productid, int orderid, int userid, Date orderdate, String status) {
 		super();
 		this.productid = productid;
 		this.orderid = orderid;
@@ -154,7 +167,7 @@ public class Orders {
 
 
 
-	public Orders(int productid, String productname, String producttype, int orderid, int userid, Date orderdate,
+	public OrdersPojo(int productid, String productname, String producttype, int orderid, int userid, Date orderdate,
 			String produtsize, double totalprice, int quantiy, String status) {
 		super();
 		this.productid = productid;

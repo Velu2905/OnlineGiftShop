@@ -2,7 +2,7 @@ package com.giftshop.model;
 
 import java.util.Objects;
 
-public class Admin {
+public class AdminPojo {
 private String name;
 private String emailid;
 private String password;
@@ -32,7 +32,7 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-public Admin(String name, String emailid, String password) {
+public AdminPojo(String name, String emailid, String password) {
 	super();
 	this.name = name;
 	this.emailid = emailid;
@@ -50,7 +50,7 @@ public boolean equals(Object obj) {
 		return false;
 	if (getClass() != obj.getClass())
 		return false;
-	Admin other = (Admin) obj;
+	AdminPojo other = (AdminPojo) obj;
 	return Objects.equals(emailid, other.emailid) && Objects.equals(name, other.name)
 			&& Objects.equals(password, other.password);
 }
@@ -58,7 +58,7 @@ public boolean equals(Object obj) {
 public String toString() {
 	return "Admin [name=" + name + ", emailid=" + emailid + ", password=" + password + "]";
 }
-public Admin(String email1, String pass) {
+public AdminPojo(String email1, String pass) {
 	super();
 	this.emailid = email1;
 	this.password = pass;
@@ -99,7 +99,7 @@ public int getQuantityonhand() {
 public void setQuantityonhand(int quantityonhand) {
 	this.quantityonhand = quantityonhand;
 }
-public Admin(int productId, String productName, String description, double standardCost, String category,
+public AdminPojo(int productId, String productName, String description, double standardCost, String category,
 		int quantityonhand) {
 	super();
 	this.productId = productId;
@@ -109,7 +109,7 @@ public Admin(int productId, String productName, String description, double stand
 	this.category = category;
 	this.quantityonhand = quantityonhand;
 }
-public Admin(String productName,int productId) {
+public AdminPojo(String productName,int productId) {
 	super();
 	this.productName = productName;
 	this.productId = productId;

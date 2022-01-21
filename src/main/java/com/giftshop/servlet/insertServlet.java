@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.giftshop.impl.ProductsImpl;
-import com.giftshop.model.Product;
+import com.giftshop.model.ProductPojo;
 
 @WebServlet("/insert")
 public class insertServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class insertServlet extends HttpServlet {
 		int qunatity=Integer.parseInt(req.getParameter("productquantity"));	
 		String image=req.getParameter("image");
 		String type=req.getParameter("type");
-		Product pr=new Product(productid, productname, description, cost, category,qunatity,image,type);
+		ProductPojo pr=new ProductPojo(productid, productname, description, cost, category,qunatity,image,type);
 		ProductsImpl product=new ProductsImpl();
 		try {
 			product.insert(pr);

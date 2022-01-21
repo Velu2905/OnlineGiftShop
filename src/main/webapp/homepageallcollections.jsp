@@ -1,6 +1,6 @@
-<%@page import="com.giftshop.model.Product"%>
-<%@page import="com.giftshop.impl.* "%>
-<%@page import="java.util.* "%>
+<%@page import="com.giftshop.model.ProductPojo"%>
+<%@page import="com.giftshop.impl.*"%>
+<%@page import="java.util.*"%>
 
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -39,7 +39,7 @@ table img {
 <form>
 <%
 ProductsImpl dao=new ProductsImpl();
-List<Product> ShowProduct;
+List<ProductPojo> ShowProduct;
  ShowProduct=dao.adminShowProduct();
 %>
 
@@ -49,9 +49,10 @@ List<Product> ShowProduct;
         <table>
             <tbody>
                 <tr>
-                <%int count=0;
-                for(Product ushowProduct: ShowProduct){
-                	%>
+                <%
+                int count=0;
+                                for(ProductPojo ushowProduct: ShowProduct){
+                %>
                     <td>
                         <table id="carproduct">
                             <tbody>

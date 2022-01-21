@@ -1,6 +1,6 @@
 package com.giftshop.model;
 
-public class Invoice {
+public class Invoicepojo {
 	private int orderid;
 	private String username;
 	private String productname;
@@ -47,7 +47,7 @@ public class Invoice {
 		this.totalprice = totalprice;
 	}
 
-	public Invoice(int orderid, String productname, int quantityordered, double totalprice) {
+	public Invoicepojo(int orderid, String productname, int quantityordered, double totalprice) {
 		super();
 		this.orderid = orderid;
 		this.productname = productname;

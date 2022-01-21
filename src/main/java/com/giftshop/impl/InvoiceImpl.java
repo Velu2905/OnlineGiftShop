@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.giftshop.dao.InvoiceDao;
-import com.giftshop.model.Invoice;
+import com.giftshop.model.Invoicepojo;
 import com.giftshop.util.ConnectionUtil;
 
 public class InvoiceImpl implements InvoiceDao{
@@ -19,7 +19,7 @@ public class InvoiceImpl implements InvoiceDao{
 	public static double totalPrice;
 	public static String userName;
 	public static int instanceUserId;
-	static ArrayList<Invoice> orderItemsList = null;
+	static ArrayList<Invoicepojo> orderItemsList = null;
 
 	public void totalprice(int userid) throws ClassNotFoundException, SQLException {
 		Connection con = ConnectionUtil.gbconnection();
@@ -29,7 +29,7 @@ public class InvoiceImpl implements InvoiceDao{
 		PreparedStatement pst = con.prepareStatement(query);
 		pst.setInt(1, userid);
 		ResultSet rs = pst.executeQuery();
-		ArrayList<Invoice> orderItems = new ArrayList<>();
+		ArrayList<Invoicepojo> orderItems = new ArrayList<>();
 
 		if(rs.next()){
 			System.out.println("TOTAL PURCHASE:\n" + "User name:" +rs.getString(1)+"\n"+"Total amount:" +  rs.getInt(2)+"\n" +"Total quantity:" +rs.getInt(3));
@@ -62,7 +62,7 @@ public class InvoiceImpl implements InvoiceDao{
 				quantity = rs.getInt(3);
 				totalPrice = rs.getDouble(4);
 
-				Invoice orderItems = new Invoice(orderId,proName,quantity,totalPrice);
+				Invoicepojo orderItems = new Invoicepojo(orderId,proName,quantity,totalPrice);
 
 				System.out.println("Product Name : "+proName+"  Order Id  : "+orderId+"  Quantity : "+quantity+"  Total Price : "+totalPrice);
 				orderItemsList.add(orderItems);
@@ -106,7 +106,7 @@ public class InvoiceImpl implements InvoiceDao{
 			String sql = "insert into g_invoice(order_id,user_name,product_name,quantity_ordered,total_price)  values(?,?,?,?,?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(2, userName);
-			for(Invoice ord : orderItemsList) {
+			for(Invoicepojo ord : orderItemsList) {
 				ps.setString(3, ord.getProductname());
 				ps.setInt(1, ord.getOrderid());
 				ps.setInt(4, ord.getQuantityordered());

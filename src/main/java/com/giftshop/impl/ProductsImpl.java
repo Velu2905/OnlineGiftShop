@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.giftshop.dao.ProductsDao;
-import com.giftshop.model.Product;
+import com.giftshop.model.ProductPojo;
 import com.giftshop.util.ConnectionUtil;
 
 public class ProductsImpl implements ProductsDao {
 
 //	private static final ProductsImpl ProductDao1 = null;
 
-	public void insert(Product product1) throws ClassNotFoundException, SQLException {
+	public void insert(ProductPojo product1) throws ClassNotFoundException, SQLException {
 
 		String insertQuery = "insert into gproducts (product_id,product_name,description,standard_cost,category,quantity_onhand)values(?,?,?,?,?,?)";
 		Connection con = ConnectionUtil.gbconnection();
@@ -36,7 +36,7 @@ System.out.println(product1.getProductId()+product1.getProductName()+product1.ge
 		con.close();
 	}
 
-	public void update(Product product2) throws SQLException, ClassNotFoundException {
+	public void update(ProductPojo product2) throws SQLException, ClassNotFoundException {
 		String UpdateQuery = "update gproducts set standard_cost=?,quantity_onhand=? where product_id=?";
 		Connection con = ConnectionUtil.gbconnection();
 		PreparedStatement pstmt = con.prepareStatement(UpdateQuery);
@@ -49,20 +49,17 @@ System.out.println(product1.getProductId()+product1.getProductName()+product1.ge
 		pstmt.close();
 	}
 
-	public  List<Product> adminShowProduct() {
-		 List<Product> products =new ArrayList<Product>();
+	public  List<ProductPojo> adminShowProduct() {
+		 List<ProductPojo> products =new ArrayList<ProductPojo>();
 		String prod = "select product_name,description,category,image from gproducts";
 		Connection con;
-		Product product=null;
+		ProductPojo product=null;
 		try {
 			con = ConnectionUtil.gbconnection();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(prod);
 			while (rs.next()) {
-//				System.out.format("%-15s%-15s%-25s%-25s%-15s%-5s", rs.getInt(1), rs.getString(2), rs.getString(3),
-//						rs.getDouble(4), rs.getString(5), rs.getInt(6),rs.getString(7));
-//				System.out.println();
-				product=new Product(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4));
+				product=new ProductPojo(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4));
 				products.add(product);
 			}
 			
@@ -91,11 +88,11 @@ System.out.println(product1.getProductId()+product1.getProductName()+product1.ge
 		}
 	}
 
-	public List<Product> mens() {
-		 List<Product> products =new ArrayList<Product>();
+	public List<ProductPojo> mens() {
+		 List<ProductPojo> products =new ArrayList<ProductPojo>();
 		String products1= "select * from gproducts where category='mens'";
 		Connection con;
-		Product product=null;
+		ProductPojo product=null;
 		try {
 			con = ConnectionUtil.gbconnection();
 			Statement stmt = con.createStatement();
@@ -104,7 +101,7 @@ System.out.println(product1.getProductId()+product1.getProductName()+product1.ge
 //				System.out.format("%-15s%-25s%-25s%-15s", rs.getString(2), rs.getString(3), rs.getDouble(4),
 //						rs.getString(5));
 //				System.out.println();
-				product=new Product(rs.getString(2), rs.getString(3), rs.getDouble(4),
+				product=new ProductPojo(rs.getString(2), rs.getString(3), rs.getDouble(4),
 						rs.getString(5),rs.getString(7));
 				products.add(product);
 			}
@@ -157,7 +154,7 @@ System.out.println(product1.getProductId()+product1.getProductName()+product1.ge
 
 	}
 
-		public void delete(Product product3) throws SQLException, ClassNotFoundException {
+		public void delete(ProductPojo product3) throws SQLException, ClassNotFoundException {
 			System.out.println("row deleted successfully");
 			String Deletequery = "delete from gproducts where product_id=?";
 			Connection con =ConnectionUtil.gbconnection();
@@ -180,10 +177,10 @@ System.out.println(product1.getProductId()+product1.getProductName()+product1.ge
 		return -1;
 	}
 
-	public Product validateProduct(String productname) {
+	public ProductPojo validateProduct(String productname) {
 
 		String validdateQuery = "select *from gproducts where product_name=?";
-		Product product1=null;
+		ProductPojo product1=null;
 
 		try {
 			Connection con = ConnectionUtil.gbconnection();
@@ -194,7 +191,7 @@ System.out.println(product1.getProductId()+product1.getProductName()+product1.ge
 			{
 				
 //				ProductDao1 stock = new ProductDao1(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getString(5), rs.getInt(6) ));
-				 product1=new Product(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getString(5), rs.getInt(6));
+				 product1=new ProductPojo(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getString(5), rs.getInt(6));
 				System.out.println();
             return product1;
 			}
@@ -212,19 +209,19 @@ System.out.println(product1.getProductId()+product1.getProductName()+product1.ge
 	
 	}	
 
-	public List<Product> price ()  {
-		List<Product> products2 =new ArrayList<Product>();
+	public List<ProductPojo> price ()  {
+		List<ProductPojo> products2 =new ArrayList<ProductPojo>();
 	  
 		String getprice="select product_name,standard_cost,image,p_type,product_id from gproducts where product_name='Mens tshirt'";
 		Connection con;
-		Product prod=null;
+		ProductPojo prod=null;
 		try {
 		 con = ConnectionUtil.gbconnection();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(getprice);
 			while (rs.next()) {
 			
-					prod=new Product();
+					prod=new ProductPojo();
 					prod.setImage(rs.getString(3));
 					/* System.out.println(rs.getString(1)); */
 					prod.setProductName(rs.getString(1));
@@ -246,19 +243,53 @@ System.out.println(product1.getProductId()+product1.getProductName()+product1.ge
 			return products2;
 	}
 	
-	public List<Product> adminviewtshirt ()  {
-		List<Product> products2 =new ArrayList<Product>();
+	public List<ProductPojo> adminviewtshirt ()  {
+		List<ProductPojo> products2 =new ArrayList<ProductPojo>();
 	  
 		String getview="select*from gproducts where product_name='Mens tshirt'";
 		Connection con;
-		Product prod=null;
+		ProductPojo prod=null;
 		try {
 		 con = ConnectionUtil.gbconnection();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(getview);
 			while (rs.next()) {
 			
-					prod=new Product(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getString(5), rs.getInt(6),rs.getString(7),rs.getString(8));
+					prod=new ProductPojo(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getString(5), rs.getInt(6),rs.getString(7),rs.getString(8));
+					
+				products2.add(prod);
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			return products2;
+	}
+	
+	public List<ProductPojo> mobilecase ()  {
+		List<ProductPojo> products2 =new ArrayList<ProductPojo>();
+	  
+		String getprice="select product_name,standard_cost,image,p_type,product_id from gproducts where product_name='mobile case'";
+		Connection con;
+		ProductPojo prod=null;
+		try {
+		 con = ConnectionUtil.gbconnection();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(getprice);
+			while (rs.next()) {
+			
+					prod=new ProductPojo();
+					prod.setImage(rs.getString(3));
+					/* System.out.println(rs.getString(1)); */
+					prod.setProductName(rs.getString(1));
+					prod.setProductId(rs.getInt(5));
+					prod.setStandardCost(rs.getDouble(2));
+					prod.setType(rs.getString(4));
+					
 					
 				products2.add(prod);
 			}

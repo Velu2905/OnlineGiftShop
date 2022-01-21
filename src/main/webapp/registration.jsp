@@ -28,11 +28,11 @@ body{
 .container{
   max-width: 500px;
   width: 100%;
-  background-color:rgb(255, 255, 255);
-  /* background-color:rgba(253, 253, 253, 0.973); */
-  padding: 25px 30px;
-  border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+	  background-color:rgb(255, 255, 255);
+	  /* background-color:rgba(253, 253, 253, 0.973); */
+	  padding: 25px 30px;
+	  border-radius: 5px;
+	  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
 }
 .container .title{
   font-size: 25px;
@@ -153,6 +153,10 @@ form .user-details .input-box{
           <div class="input-box">
             <span class="details">Phone Number</span>
             <input type="text" name="phone"pattern="[6-9]{1}[0-9]{9}"placeholder="Enter your number"minlength="10" maxlength="10" required>
+          </div>
+           <div class="input-box">
+            <span class="details">Address</span>
+            <input type="text" name="address"placeholder="Enter your location"required>
           </div>
           <div class="input-box">
             <span class="details">Password</span>

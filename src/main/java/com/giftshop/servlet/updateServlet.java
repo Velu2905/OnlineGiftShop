@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.giftshop.impl.ProductsImpl;
-import com.giftshop.model.Product;
+import com.giftshop.model.ProductPojo;
 @WebServlet("/update")
 public class updateServlet extends HttpServlet {
 
@@ -20,7 +20,7 @@ public class updateServlet extends HttpServlet {
 		int productid=Integer.parseInt(req.getParameter("productid"));
 		double price=Double.parseDouble(req.getParameter("price"));
 		int qunatity=Integer.parseInt(req.getParameter("quantity"));
-		Product pr=new Product(productid, price, qunatity);
+		ProductPojo pr=new ProductPojo(productid, price, qunatity);
 		ProductsImpl product=new ProductsImpl();
 		try {
 			product.update(pr);

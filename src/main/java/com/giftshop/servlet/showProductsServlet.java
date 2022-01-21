@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.giftshop.impl.ProductsImpl;
-import com.giftshop.model.Product;
+import com.giftshop.model.ProductPojo;
 
 public class showProductsServlet extends HttpServlet {
 
@@ -33,7 +33,7 @@ public class showProductsServlet extends HttpServlet {
 		System.out.println("vel6");
 		String image=req.getParameter("image");
 		System.out.println("vel7");
-		Product product=new Product(productid, productname, description, cost, category, quantity, image);
+		ProductPojo product=new ProductPojo(productid, productname, description, cost, category, quantity, image);
 		ProductsImpl pr =new ProductsImpl();
 	    pr.adminShowProduct();
 	    resp.sendRedirect("adminlogin.jsp");

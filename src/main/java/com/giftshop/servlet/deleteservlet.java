@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.giftshop.impl.ProductsImpl;
-import com.giftshop.model.Product;
+import com.giftshop.model.ProductPojo;
 @WebServlet("/delete")
 public class deleteservlet extends HttpServlet {
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	// TODO Auto-generated method stub
 	int productid=Integer.parseInt(req.getParameter("productid"));
-	Product pr=new Product(productid);
+	ProductPojo pr=new ProductPojo(productid);
 	ProductsImpl product=new ProductsImpl();
 	try {
 		product.delete(pr);

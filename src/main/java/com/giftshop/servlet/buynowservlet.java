@@ -13,19 +13,18 @@ import javax.servlet.http.HttpSession;
 
 import com.giftshop.impl.OrdersImpl;
 import com.giftshop.impl.viewCartImpl;
-import com.giftshop.model.Orders;
-import com.giftshop.model.viewcart;
+import com.giftshop.model.OrdersPojo;
+import com.giftshop.model.viewcartPojo;
 @WebServlet("/buynow")
 public class buynowservlet extends HttpServlet {
 @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	// TODO Auto-generated method stub
 	HttpSession session = req.getSession();
-	System.out.println("hii");
 	 int uid= (int) session.getAttribute("logincustomer");
 	 int ordip=0;
 		boolean flag=false;
-	 Orders order = new Orders();
+	 OrdersPojo order = new OrdersPojo();
 	 order.setUserid(uid);
 	 OrdersImpl obj = new OrdersImpl();
 	  try {
@@ -40,7 +39,6 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	 
 	  try {
 		 ordip =obj.getorder(order);
-		 System.out.println(ordip);
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -48,20 +46,21 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	  viewcart vcar1 =new viewcart();
+	  viewcartPojo vcar1 =new viewcartPojo();
 	  vcar1.setUserid(uid);
 	  viewCartImpl obj1 = new viewCartImpl();
-	  List<viewcart> cartlist;
+	  List<viewcartPojo> cartlist;
 	try {
-		cartlist = obj1.insert(vcar1);
+		cartlist = obj1.showcart(vcar1);
 		 for(int i=0;cartlist.size()>i;i++)
 		  {
-			 Orders orders = new Orders();
+			 OrdersPojo orders = new OrdersPojo();
 			 orders.setUserid(uid);
 			 orders.setOrderid(ordip);
 			 orders.setProductid(cartlist.get(i).getProductid());
 			 orders.setQuantiy(cartlist.get(i).getQuantity());
 			 orders.setProdutsize(cartlist.get(i).getSize());
+			 orders.setProducttype(cartlist.get(i).getType());
 			 orders.setTotalprice(cartlist.get(i).getStandardcost());
 			 OrdersImpl ord = new OrdersImpl();
 			  ord.insertorder(orders);
@@ -75,8 +74,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		e.printStackTrace();
 	}
 	 
-	 viewcart vcar2 =new viewcart();
-	 System.out.println(uid);
+	 viewcartPojo vcar2 =new viewcartPojo();
 	 vcar2.setUserid(uid);
 	 viewCartImpl obj2 = new viewCartImpl();
 	 try {
@@ -90,7 +88,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	}
 	 if(flag)
 	 {
-	 resp.sendRedirect("buynow.jsp");
+	 resp.sendRedirect("exit.jsp");
 	 }
 }
 	

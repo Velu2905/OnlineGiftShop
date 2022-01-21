@@ -111,7 +111,7 @@ form .button{
         <div class="user-details">
             <div class="input-box">
                 <span class="details">Product id</span>
-                <input type="text"name="productid" placeholder="Enter product id" required>
+                <input type="text"name="productid"pattern="[1-9]{1}[0-9]+" placeholder="Enter product id" required>
               </div>
             <div class="input-box">
                 <span class="details">Product name</span>

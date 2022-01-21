@@ -1,6 +1,6 @@
 package com.giftshop.model;
 
-public class viewcart {
+public class viewcartPojo {
 	
 private String image;
 private String productname;
@@ -69,7 +69,7 @@ public int getProductid() {
 public void setProductid(int productid) {
 	this.productid = productid;
 }
-public viewcart(String image, String productname, String type, double standardcost, String size, int quantity,
+public viewcartPojo(String image, String productname, String type, double standardcost, String size, int quantity,
 		int userid) {
 	super();
 	this.image = image;
@@ -80,11 +80,11 @@ public viewcart(String image, String productname, String type, double standardco
 	this.quantity = quantity;
 	this.userid = userid;
 }
-public viewcart() {
+public viewcartPojo() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public viewcart(String image, String productname, String type, double standardcost, String size, int quantity,
+public viewcartPojo(String image, String productname, String type, double standardcost, String size, int quantity,
 		int userid, int productid) {
 	super();
 	this.image = image;
@@ -104,7 +104,7 @@ public viewcart(String image, String productname, String type, double standardco
 //		double double1, double double2) {
 //	// TODO Auto-generated constructor stub
 //}
-public viewcart(String image, String productname, String type, double standardcost, String size, int quantity,
+public viewcartPojo(String image, String productname, String type, double standardcost, String size, int quantity,
 		int userid, int productid, double totalprice) {
 	super();
 	this.image = image;

@@ -1,7 +1,7 @@
-<%@page import="com.giftshop.model.viewcart"%>
-<%@page import="com.giftshop.model.Product"%>
-<%@page import="com.giftshop.impl.* "%>
-<%@page import="java.util.* "%>
+<%@page import="com.giftshop.model.viewcartPojo"%>
+<%@page import="com.giftshop.model.ProductPojo"%>
+<%@page import="com.giftshop.impl.*"%>
+<%@page import="java.util.*"%>
 
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -15,13 +15,12 @@
 <body>
 <form>
 <%
-
-viewcart  vcart = new viewcart();
+viewcartPojo  vcart = new viewcartPojo();
 int userid = (int) session.getAttribute("logincustomer");
 vcart.setUserid(userid);
 viewCartImpl dao = new viewCartImpl();
-List<viewcart> mycart;
-List<viewcart> showcart=dao.mycart( vcart);
+List<viewcartPojo> mycart;
+List<viewcartPojo> showcart=dao.mycart( vcart);
 %>
 
 
@@ -30,9 +29,10 @@ List<viewcart> showcart=dao.mycart( vcart);
         <table>
             <tbody>
                 <tr>
-                <%int count=0;
-                for(viewcart showProduct: showcart){
-                	%>
+                <%
+                int count=0;
+                                for(viewcartPojo showProduct: showcart){
+                %>
                     <td>
                         <table id="carproduct">
                             <tbody>

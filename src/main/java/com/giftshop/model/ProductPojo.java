@@ -1,6 +1,6 @@
 package com.giftshop.model;
 
-public class Product {
+public class ProductPojo {
 
 	private int productId;
 	private String productName;
@@ -78,7 +78,7 @@ private String type;
 	}
 
 	
-	public Product(int productId, String productName, String description, double standardCost, String category,
+	public ProductPojo(int productId, String productName, String description, double standardCost, String category,
 			int quantityonhand) {
 		super();
 		this.productId = productId;
@@ -104,7 +104,7 @@ private String type;
 				+ "]";
 	}
 
-	public Product(int productId, double standardCost, int quantityonhand) {
+	public ProductPojo(int productId, double standardCost, int quantityonhand) {
 	super();
 	this.productId = productId;
 	this.standardCost = standardCost;
@@ -114,12 +114,12 @@ private String type;
 
 
 	
-	public Product(int productId) {
+	public ProductPojo(int productId) {
 		super();
 		this.productId = productId;
 	}
 
-	public Product(int productId, String productName, String description, double standardCost, String category,
+	public ProductPojo(int productId, String productName, String description, double standardCost, String category,
 			int quantityonhand, String image) {
 		super();
 		this.productId = productId;
@@ -131,7 +131,7 @@ private String type;
 		this.image = image;
 	}
 
-	public Product(String productName, String description, double standardCost, String category, String image) {
+	public ProductPojo(String productName, String description, double standardCost, String category, String image) {
 		super();
 		this.productName = productName;
 		this.description = description;
@@ -140,7 +140,7 @@ private String type;
 		this.image = image;
 	}
 
-	public Product(String productName, double standardCost, String image, String type) {
+	public ProductPojo(String productName, double standardCost, String image, String type) {
 		super();
 		this.productName = productName;
 		this.standardCost = standardCost;
@@ -148,7 +148,7 @@ private String type;
 		this.type = type;
 	}
 
-	public Product(int productId, String productName, String description, double standardCost, String category,
+	public ProductPojo(int productId, String productName, String description, double standardCost, String category,
 			int quantityonhand, String image, String type) {
 		super();
 		this.productId = productId;
@@ -161,7 +161,7 @@ private String type;
 		this.type = type;
 	}
 
-	public Product(String productName, String description, String category, String image) {
+	public ProductPojo(String productName, String description, String category, String image) {
 		super();
 		this.productName = productName;
 		this.description = description;
@@ -169,13 +169,13 @@ private String type;
 		this.image = image;
 	}
 
-	public Product(int productId, String productName) {
+	public ProductPojo(int productId, String productName) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
 	}
 
-	public Product() {
+	public ProductPojo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

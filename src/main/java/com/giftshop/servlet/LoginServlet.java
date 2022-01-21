@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.giftshop.exception.LoginException;
 import com.giftshop.impl.UserImpl;
-import com.giftshop.model.userlogin;
+import com.giftshop.model.userloginPojo;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -23,32 +24,38 @@ public class LoginServlet extends HttpServlet {
 		
 	String username=req.getParameter("username");
 	String pwd=req.getParameter("password");
-	System.out.println(username+pwd);
-	userlogin ul=new userlogin(username, pwd);
+	userloginPojo ul=new userloginPojo(username, pwd);
 	UserImpl ui=new UserImpl();
-	
+	HttpSession session=req.getSession(); 
 		ResultSet rs = null;
 		try {
 			rs = ui.validateuser1(ul);
 			rs.next();
-			HttpSession session=req.getSession();  
+			 
 	        session.setAttribute("logincustomer",rs.getInt(1));
-			System.out.println(rs.toString());
 			if(rs.getString(6).equals("admin")) {
 				resp.sendRedirect("adminlogin.jsp");
 				System.out.println("success");
 			} 
-			else {
+			else if(rs.getString(6).equals("user")) {
+				
 				resp.sendRedirect("homepage.jsp");
-			
+			}
+			else {
+				
+				 throw new LoginException();
+		
 				}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			}
+			 catch (ClassNotFoundException  | SQLException  | LoginException e) {
+					 
+
+					session.setAttribute("erroruserid","Sorry, username or password incorrect!");
+				
+					req.getRequestDispatcher("login.jsp").include(req, resp);
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		
 		
 	

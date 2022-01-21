@@ -133,10 +133,6 @@ form .user-details .input-box{
           <div class="content">
             <form action="login" method="post">
               <div class="user-details">
-                <!-- <div class="input-box">
-                  <span class="details">Full Name</span>
-                  <input type="text" placeholder="Enter your name" required>
-                </div> -->
                 <div class="input-box">
                   <span class="details">Email</span>
                   <input type="text" name="username"pattern="[a-z0-9]+[@][a-zA-Z]+[.][a-z]+"					
@@ -144,7 +140,7 @@ form .user-details .input-box{
                 </div>
                 <div class="input-box">
                   <span class="details">Password</span>
-                  <input type="password"pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&?/*$^]).{8,16}$"
+                  <input type="password" name="password"pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&?/*$^]).{8,16}$"
             title="Minimum 8 characters should be there.There should be atleast one numeric,special character,capital letter and small letter." name="password"
             minlength="8" maxlength="16"
              placeholder="Enter your password" required>
@@ -153,6 +149,10 @@ form .user-details .input-box{
               <div class="button">
                 <input type="submit" value="Login">
               </div>
+              <%String erroruserid=(String)session.getAttribute("erroruserid");
+     if(erroruserid!=null){ %>
+		<p id="errorcontent"><%=erroruserid %></p>
+		<% session.removeAttribute("erroruserid");} %>
             </form>
           </div>
         </div>

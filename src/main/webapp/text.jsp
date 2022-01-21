@@ -1,6 +1,6 @@
-<%@page import="com.giftshop.model.Product"%>
-<%@page import="com.giftshop.impl.* "%>
-<%@page import="java.util.* "%>
+<%@page import="com.giftshop.model.ProductPojo"%>
+<%@page import="com.giftshop.impl.*"%>
+<%@page import="java.util.*"%>
 
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -38,8 +38,8 @@ table {
 <body>
 	<%
 	ProductsImpl dao = new ProductsImpl();
-	List<Product> price1;
-	price1 = dao.price();
+		List<ProductPojo> price1;
+		price1 = dao.price();
 	%>
 
 <form action="addcart?"method="post">
@@ -56,7 +56,7 @@ table {
 					%>
 
 					<%
-					for (Product showPrice : price1) {
+					for (ProductPojo showPrice : price1) {
 					%>
 
 					<td>

@@ -6,31 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.giftshop.dao.UserDao;
-import com.giftshop.model.User;
-import com.giftshop.model.userlogin;
+import com.giftshop.model.UserPojo;
+import com.giftshop.model.userloginPojo;
 import com.giftshop.util.ConnectionUtil;
 
 public class UserImpl implements UserDao {
-public void insert (User user) throws ClassNotFoundException, SQLException {
+public void insert (UserPojo user) throws ClassNotFoundException, SQLException {
 	
-		String insertQuery="insert into user_gift(user_name,email,mobile_number,user_Password) values(?,?,?,?)";
+		String insertQuery="insert into user_gift(user_name,email,mobile_number,user_Password,address) values(?,?,?,?,?)";
 		Connection con=ConnectionUtil.gbconnection();
 		PreparedStatement pstmt=con.prepareStatement(insertQuery);
-		
-		System.out.println(user.getUsername());
-		System.out.println(user.getMobilenumber());
 		pstmt.setString(1,user.getUsername());
 		pstmt.setString(2,user.getEmail());
 		pstmt.setLong(3,user.getMobilenumber());
 		pstmt.setString(4,user.getPassword());	
-	int i = pstmt.executeUpdate();
-	System.out.println("Registration successful");	
+		pstmt.setString(5,user.getAddress());
+	int i = pstmt.executeUpdate();	
     pstmt.close();
 	con.close();
 	}
 
-public ResultSet validateuser1(userlogin ul) throws ClassNotFoundException, SQLException {
-//	int i=0;
+public ResultSet validateuser1(userloginPojo ul) throws ClassNotFoundException, SQLException {
 	ResultSet rs=null;
 	String  validate="select * from user_gift where email = ? and user_password = ?";
 	Connection con=ConnectionUtil.gbconnection();
@@ -38,11 +34,6 @@ public ResultSet validateuser1(userlogin ul) throws ClassNotFoundException, SQLE
     Pstmt1.setString(1, ul.getUsername());
     Pstmt1.setString(2, ul.getPassword());
     rs=Pstmt1.executeQuery();
-//	ResultSet rs = Pstmt1.executeQuery();
-//	if(rs.next()) {
-//		return true;
-//	}
-//	return false;
 	return rs;
 }
 
